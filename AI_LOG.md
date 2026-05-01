@@ -1,14 +1,16 @@
-Tool: ChatGPT
-The prompt:what does this do :def __repr__(self): return f"<ExampleRecord {self.title}>"
+*Tool: ChatGPT
 
-AI OUTput: a special python method called __repr__() that controls how an object is displayed when printed in the console.
+-The prompt:what does this do :def __repr__(self): return f"<ExampleRecord {self.title}>"
 
-Modification: I modified what was on the file provided by the instructor to fit my tables. After understanding what its purpose was.
+-AI OUTput: a special python method called __repr__() that controls how an object is displayed when printed in the console.
 
-Tool:ChatGPT
-The prompt: How to build a relationship between two tables in Flask SQLAlchemy?
+-Modification: I modified what was on the file provided by the instructor to fit my tables. After understanding what its purpose was.
 
-AI Output: Need two things a foreign key and relationship.
+*Tool:ChatGPT
+
+-The prompt: How to build a relationship between two tables in Flask SQLAlchemy?
+
+-AI Output: Need two things a foreign key and relationship.
 
 db.ForeignKey()->creates the link in child table
 db.relationship()-> lets you access related objects in python
@@ -25,5 +27,5 @@ class Child(db.Model):
 
     parent_id = db.Column(db.Integer, db.ForeignKey('parent.id'))
     
-  Modification:
+  -Modification:
   Seeing the example given I used it to create the relationshiops for my tables.

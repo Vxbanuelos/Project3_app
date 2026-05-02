@@ -29,3 +29,39 @@ class Child(db.Model):
     
   -Modification:
   Seeing the example given I used it to create the relationshiops for my tables.
+
+*Tool: ChatGPT
+
+-The prompt: What does this do?
+from .models import ExampleRecord
+
+main = Blueprint("main", __name__)
+@main.route("/")
+def index():
+    records = ExampleRecord.query.order_by(ExampleRecord.id.desc()).all()
+    return render_template("index.html", records=records)
+
+-AI Output:
+Blueprint = organizes routes into sections
+render_template = loads an HTML page
+
+from .models import ExampleRecord
+Imports your database model from models.py
+
+main = Blueprint("main", __name__)
+Creates a Blueprint named main
+
+records = ExampleRecord.query.order_by(ExampleRecord.id.desc()).all()
+
+This gets all rows from database table ExampleRecord
+Sorted by newest first (id DESC)
+
+-Modification: Helped me understand what it does and how I should use it to apply for my project
+
+
+
+
+
+
+
+  

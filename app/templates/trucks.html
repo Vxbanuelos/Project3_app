@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}Food Trucks{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">Food Trucks</h2>
+
+<!-- ADD NEW FOOD TRUCK FORM -->
+<div class="card mb-4">
+  <div class="card-header">
+    Add New Food Truck
+  </div>
+  <div class="card-body">
+    <form method="POST" action="{{ url_for('main.add_truck') }}">
+      <div class="row">
+        <div class="col-md-3">
+          <input type="text" name="name" class="form-control" placeholder="Truck Name">
+        </div>
+
+        <div class="col-md-3">
+          <input type="text" name="cuisine" class="form-control" placeholder="Cuisine">
+        </div>
+
+        <div class="col-md-3">
+          <input type="text" name="location" class="form-control" placeholder="Location">
+        </div>
+
+        <div class="col-md-2">
+          <select name="owner_id" class="form-control">
+            <option value="">Select Owner</option>
+            {% for user in users %}
+              <option value="{{ user.user_id }}">
+                {{ user.name }} - {{user.role}}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="col-md-1">
+          <button type="submit" class="btn btn-primary">Add</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- FOOD TRUCKS TABLE -->
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Truck Name</th>
+      <th>Cuisine</th>
+      <th>Location</th>
+      <th>Owner</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for truck in foodtrucks %}
+    <tr>
+      <form method="POST" action="{{ url_for('main.edit_truck', truck_id=truck.truck_id) }}">
+        <td>
+          <input type="text" name="name" class="form-control" value="{{ truck.name }}">
+        </td>
+
+        <td>
+          <input type="text" name="cuisine" class="form-control" value="{{ truck.cuisine }}">
+        </td>
+
+        <td>
+          <input type="text" name="location" class="form-control" value="{{ truck.location }}">
+        </td>
+
+        <td>
+          <select name="owner_id" class="form-control">
+            {% for user in users %}
+              <option value="{{ user.user_id }}"
+                {% if truck.owner_id == user.user_id %}selected{% endif %}>
+                {{ user.name }}
+              </option>
+            {% endfor %}
+          </select>
+        </td>
+
+        <td>
+          <button type="submit" class="btn btn-success btn-sm">Save</button>
+        </td>
+      </form>
+
+      <td>
+        <form method="POST" action="{{ url_for('main.delete_truck', truck_id=truck.truck_id) }}">
+          <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

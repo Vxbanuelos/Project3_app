@@ -3,47 +3,99 @@
 {% block title %}Home | Stack Outline App{% endblock %}
 
 {% block content %}
-<section class="mb-4">
-  <h1 class="h3">Dashboard</h1>
-  <p class="text-muted mb-0">
-    This page demonstrates a minimal HTML5/CSS3 frontend with Bootstrap and server-side rendering.
-  </p>
-</section>
 
-<div class="mb-4">
+<div class="text-center mb-4">
   <h2 class="h4">Welcome to the Food Truck App!</h2>
   <p class="text-muted mb-0">
-    Use the navigation bar to explore food trucks, events, and more.
+    Use the navigation bar to add food trucks, events, and more.
   </p>
-  <p><strong>Total Users:</strong> {{ total_users }}</p>
-  <p><strong>Total Food Trucks:</strong> {{ total_foodtrucks }}</p>
-  <p><strong>Total Events:</strong> {{ total_events }}</p>
-  <p><strong>Total Favorites:</strong> {{ total_favorites }}</p>
-  <p><strong>Total Ratings:</strong> {{ total_ratings }}</p>
-  <p><strong>Average Rating:</strong> {{ total_avg_rating }}</p>
 
+  <div class="card p-3">
+  <p><strong>👥Total Users:</strong> {{ total_users }}</p>
+  <p><strong>🚚Total Food Trucks:</strong> {{ total_foodtrucks }}</p>
+  <p><strong>📅Total Events:</strong> {{ total_events }}</p>
+  <p><strong>❤️Total Favorites:</strong> {{ total_favorites }}</p>
+  <p><strong>⭐Total Ratings:</strong> {{ total_ratings }}</p>
+  <p><strong>📊Average Rating:</strong> {{ total_avg_rating }}</p>
+  </div>
 </div>
 
 <hr>
-<h3 class="h4">Recent Food Trucks</h3>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Owner</th>
-      <th>Cuisine</th>
-      <th>Location</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for truck in recent_foodtrucks %}
-    <tr>
-      <td>{{ truck.name }}</td>
-      <td>{{ truck.owner }}</td>
-      <td>{{ truck.cuisine }}</td>
-      <td>{{ truck.location }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+
+<!-- ================= RECENT FOOD TRUCKS ================= -->
+<h3 class="mb-3">Recent Food Trucks</h3>
+
+<div class="row">
+  {% for truck in recent_foodtrucks %}
+  <div class="col-md-4 mb-3">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">{{ truck.name }}</h5>
+        <p class="card-text">
+          <strong>Owner:</strong> {{ truck.owner.name }}<br>
+          <strong>Cuisine:</strong> {{ truck.cuisine }}<br>
+          <strong>Location:</strong> {{ truck.location }}
+        </p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- ================= TOP RATED ================= -->
+<h3 class="mt-4 mb-3">Top Rated Food Trucks</h3>
+
+<div class="row">
+  {% for truck, avg_rating in top_trucks %}
+  <div class="col-md-4 mb-3">
+    <div class="card border-success shadow-sm">
+      <div class="card-body text-center">
+        <h5 class="card-title">{{ truck.name }}</h5>
+        <p class="card-text">
+          ⭐ {{truck.name}} - {{ "%.2f"|format(avg_rating) }}
+        </p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- ================= TOP FAVORITES ================= -->
+<h3 class="mt-4 mb-3">Top Favorited Trucks</h3>
+
+<div class="row">
+  {% for truck, count in top_favorites %}
+  <div class="col-md-4 mb-3">
+    <div class="card border-warning shadow-sm">
+      <div class="card-body text-center">
+        <h5 class="card-title">{{ truck.name }}</h5>
+        <p class="card-text">
+          ❤️ {{ count }} favorite(s)
+        </p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- ================= UPCOMING EVENTS ================= -->
+<h3 class="mt-4 mb-3">Upcoming Events</h3>
+
+<div class="row">
+  {% for event in upcoming_events %}
+  <div class="col-md-4 mb-3">
+    <div class="card border-warning shadow-sm">
+      <div class="card-body text-center">
+        <h5 class="card-title">{{ event.title }}</h5>
+        <p class="card-text">
+          📅 Date: {{ event.event_date.strftime('%Y-%m-%d') }}<br>
+          📍 Location: {{ event.location }}<br>
+          🚚 Food Truck: {{ event.foodtruck.name }}
+        </p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
 {% endblock %}

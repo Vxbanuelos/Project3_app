@@ -10,9 +10,22 @@ class Users(db.Model):
     role = db.Column(db.String(20), nullable=False)
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     
-    foodtrucks=db.relationship('Foodtrucks', backref='owner', lazy=True)
-    favorites=db.relationship('Favorites', backref='user', lazy=True)
-    ratings=db.relationship('Ratings', backref='user', lazy=True)
+    foodtrucks=db.relationship(
+        'Foodtrucks', 
+        backref='owner', 
+        cascade='all, delete',
+        lazy=True)
+
+    favorites=db.relationship(
+        'Favorites', 
+        backref='user', 
+        cascade='all, delete',
+        lazy=True)
+    ratings=db.relationship(
+        'Ratings',
+        backref='user',
+        cascade='all, delete',
+        lazy=True)
 
     def __repr__(self):
         return f"<User {self.username}>"
@@ -25,9 +38,24 @@ class Foodtrucks(db.Model):
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     owner_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
 
-    events=db.relationship('Events', backref='foodtruck', lazy=True)
-    favorites=db.relationship('Favorites', backref='foodtruck', lazy=True)
-    ratings=db.relationship('Ratings', backref='foodtruck', lazy=True)
+# cascade deletes to ensure related records are removed when a food truck is deleted
+    events=db.relationship(
+    'Events', 
+     backref='foodtruck', 
+     cascade='all, delete',
+     lazy=True
+     )
+    
+    favorites=db.relationship(
+        'Favorites',
+        backref='foodtruck',
+        cascade='all, delete',
+        lazy=True)
+    ratings=db.relationship(
+        'Ratings',
+        backref='foodtruck',
+        cascade='all, delete',
+        lazy=True)
 
     def __repr__(self):
         return f"<Foodtruck {self.name}>"

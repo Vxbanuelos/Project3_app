@@ -4,13 +4,11 @@
 
 {% block content %}
 
-<h2 class="mb-4">Food Trucks</h2>
+<h2 class="mb-4">🚚 Food Trucks</h2>
 
 <!-- ADD NEW FOOD TRUCK FORM -->
 <div class="card mb-4">
-  <div class="card-header">
-    Add New Food Truck
-  </div>
+  <div class="card-header">Add New Food Truck</div>
   <div class="card-body">
     <form method="POST" action="{{ url_for('main.add_truck') }}">
       <div class="row">
@@ -29,9 +27,8 @@
         <div class="col-md-2">
           <select name="owner_id" class="form-control">
             <option value="">Select Owner</option>
-            {% for user in users %}
-              <option value="{{ user.user_id }}">
-                {{ user.name }} - {{user.role}}</option>
+            {% for user in owners %}
+              <option value="{{ user.user_id }}">{{ user.name }} - {{ user.role }}</option>
             {% endfor %}
           </select>
         </div>
@@ -54,6 +51,8 @@
       <th>Owner</th>
       <th>Edit</th>
       <th>Delete</th>
+      <th>Favorite</th>
+      <th>Rating</th>
     </tr>
   </thead>
 
@@ -75,7 +74,7 @@
 
         <td>
           <select name="owner_id" class="form-control">
-            {% for user in users %}
+            {% for user in owners %}
               <option value="{{ user.user_id }}"
                 {% if truck.owner_id == user.user_id %}selected{% endif %}>
                 {{ user.name }}
@@ -92,6 +91,40 @@
       <td>
         <form method="POST" action="{{ url_for('main.delete_truck', truck_id=truck.truck_id) }}">
           <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+        </form>
+      </td>
+
+      <td>
+        <form method="POST" action="{{ url_for('main.add_favorite') }}">
+          <input type="hidden" name="truck_id" value="{{ truck.truck_id }}">
+
+          <select name="user_id" class="form-control mb-2">
+            <option value="">Who is favoriting?</option>
+            {% for user in users %}
+              <option value="{{ user.user_id }}">{{ user.name }}</option>
+            {% endfor %}
+          </select>
+
+          <button type="submit" class="btn btn-warning btn-sm">Favorite</button>
+        </form>
+      </td>
+
+      <td>
+        <form method="POST" action="{{ url_for('main.add_rating') }}">
+          <input type="hidden" name="truck_id" value="{{ truck.truck_id }}">
+
+          <select name="user_id" class="form-control mb-2">
+            <option value="">Who is rating?</option>
+            {% for user in users %}
+              <option value="{{ user.user_id }}">{{ user.name }}</option>
+            {% endfor %}
+          </select>
+
+          <input type="number" name="score" class="form-control mb-2" min="1" max="5" placeholder="1-5">
+
+          <input type="date" name="review_date" class="form-control mb-2">
+
+          <button type="submit" class="btn btn-primary btn-sm">Rate</button>
         </form>
       </td>
     </tr>

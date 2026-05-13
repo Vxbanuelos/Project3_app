@@ -2,7 +2,7 @@
 
 A Food Truck Management App that allows users to add food trucks, events. Users can also rate and favorite food trucks. The app allows users to register as either a food truck owner or a customer.Owners can manage their food trucks and events. While both owners and customers can rate and like their favorite food trucks. 
 
-##Tech Used
+## Tech Used
  ```bash
 Python == 3.14.2
 

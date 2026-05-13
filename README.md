@@ -1,12 +1,6 @@
-# Stack Outline App
+# Project Description
 
-Barebones project outline for:
-- Python 3
-- Flask backend
-- Relational DB (SQLite by default)
-- SQLAlchemy ORM
-- HTML5/CSS3 frontend with Bootstrap and Jinja2 templates
-- Git version control
+A Food Truck Management App that allows users to add food trucks, events. Users can also rate and favorite food trucks. The app allows users to register as either a food truck owner or a customer.Owners can manage their food trucks and events. While both owners and customers can rate and like their favorite food trucks. 
 
 ## Project Structure
 
@@ -27,25 +21,26 @@ stack_outline_app/
   .gitignore
 ```
 
-## Quick Start
+## Installation Instructions
 
-1. Create and activate a virtual environment.
+1. Clone the repository
+   
+2. Create and activate a virtual environment.
    ```
-   python -m venv venv   
-   venv\Scripts\activate 
+   python -m venv .venv   
+   .venv\Scripts\activate 
    ```
-2. Install dependencies:
+3. Install dependencies:
    ```bash
    pip install -r requirements.txt
    ```
-3. Run the app:
+## Database Setup
+
+1. Run the app:
    ```bash
    python run.py
    ```
-4. Open http://127.0.0.1:5000
+## Usage
 
-## Notes
-
-- SQLite is used out of the box via `DATABASE_URL=sqlite:///app.db`.
-- To switch databases, set `DATABASE_URL` (for example, PostgreSQL/MySQL URI) and install the corresponding driver.
-- Tables are auto-created at startup for this minimal starter (`db.create_all()`).
+1. Open in browser http://127.0.0.1:5000
+   

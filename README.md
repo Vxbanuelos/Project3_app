@@ -42,7 +42,7 @@ Werkzeug          3.1.8
  ```
 ## Installation Instructions
 
-1. Clone the repository
+1. Clone this repository
    
 2. Create and activate a virtual environment.
    ```

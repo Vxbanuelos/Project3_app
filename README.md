@@ -2,25 +2,26 @@
 
 A Food Truck Management App that allows users to add food trucks, events. Users can also rate and favorite food trucks. The app allows users to register as either a food truck owner or a customer.Owners can manage their food trucks and events. While both owners and customers can rate and like their favorite food trucks. 
 
-## Project Structure
+##Tech Used
+ ```bash
+Python == 3.14.2
 
-```
-stack_outline_app/
-  app/
-    __init__.py
-    extensions.py
-    models.py
-    routes.py
-    static/css/styles.css
-    templates/base.html
-    templates/index.html
-  config.py
-  run.py
-  requirements.txt
-  .env.example
-  .gitignore
-```
-
+Package           Version
+----------------- -------
+blinker           1.9.0
+click             8.3.3
+colorama          0.4.6
+Flask             3.1.3
+Flask-SQLAlchemy  3.1.1
+greenlet          3.5.0
+itsdangerous      2.2.0
+Jinja2            3.1.6
+MarkupSafe        3.0.3
+pip               25.3
+SQLAlchemy        2.0.49
+typing_extensions 4.15.0
+Werkzeug          3.1.8
+ ```
 ## Installation Instructions
 
 1. Clone the repository

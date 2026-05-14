@@ -16,7 +16,8 @@ rate_id(pk)-> user_id(fk), truck_id(fk), score, created_at, review_date
 ```text
 My original schema was already mostly in 3NF form therefore there are no major Anomalies.But potential anomalies that could occur:
 1. Update Anomaly
-If a user had more than one food truck and has the same name,email and username inserted but different food trucks.Then updating one of the users(email, username, email) would create an update anomaly because it would require for multiple rows to be updated leading incorrect data.
+If a user had more than one food truck and has the same name,email and username inserted but different food trucks.Then updating one of the users(email, username, email)
+would create an update anomaly because it would require for multiple rows to be updated leading incorrect data.
 
 2. Insertion Anomaly:
 I do not belive there is any.
@@ -26,7 +27,8 @@ There is no deletion anomaly in this database because there are seperate tables 
 ```
 ## Decomposition Steps
 ```text
-My table was already in 3rd normal form because there are seperate tables for users, foodtrucks,events,favorites and ratings.That each have a primary key that other attirbutes depend on in their respected table. 
+My table was already in 3rd normal form because there are seperate tables for users, foodtrucks,events,favorites and ratings.
+That each have a primary key that other attirbutes depend on in their respected table. 
 
 Users
 (user_id,name, username, email, role, created_at)

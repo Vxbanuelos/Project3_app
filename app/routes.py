@@ -16,14 +16,17 @@ def index():
     total_favorites = Favorites.query.count()
     total_ratings = Ratings.query.count()
 
-    recent_foodtrucks = Foodtrucks.query.order_by(Foodtrucks.created_at.desc()).limit(5).all()
+    recent_foodtrucks = Foodtrucks.query.order_by(Foodtrucks.created_at.desc()).limit(4).all()
+    upcoming_events = Events.query.order_by(Events.created_at.desc()).limit(4).all()
+    avg_ratings = db.session.query(func.avg(Ratings.score)).scalar()
 
+#CALCULATE TOP FAVORITES AND TOP RATED TRUCKS 
     top_favorites = (
         db.session.query(Foodtrucks, func.count(Favorites.fav_id).label("fav_count"))
         .join(Favorites, Foodtrucks.truck_id == Favorites.truck_id)
         .group_by(Foodtrucks.truck_id)
         .order_by(func.count(Favorites.fav_id).desc())
-        .limit(5)
+        .limit(4)
         .all()
     )
     top_trucks=(
@@ -31,13 +34,9 @@ def index():
         .join(Ratings, Foodtrucks.truck_id == Ratings.truck_id)
         .group_by(Foodtrucks.truck_id)
         .order_by(func.avg(Ratings.score).desc())
-        .limit(5)
+        .limit(4)
         .all()
     )
-
-    avg_ratings = db.session.query(func.avg(Ratings.score)).scalar()
-
-    upcoming_events = Events.query.filter(Events.event_date >= datetime.now()).order_by(Events.event_date).all()
     
     return render_template(
         "index.html",
@@ -91,7 +90,7 @@ def add_user():
 
     return redirect(url_for("main.users"))
 
-#EDIT USER ROUTE
+#EDIT USER PROFILE ROUTE
 @main.route("/users/edit/<int:user_id>", methods=["POST"])
 def edit_user(user_id):
     user = Users.query.get_or_404(user_id)

@@ -6,7 +6,7 @@
 
 <h2 class="mb-4">🚚 Food Trucks</h2>
 
-<!-- ADD NEW FOOD TRUCK FORM -->
+<!--------------------------- ADD NEW FOOD TRUCK FORM---------------------------->
 <div class="card mb-4">
   <div class="card-header">Add New Food Truck</div>
   <div class="card-body">
@@ -49,10 +49,10 @@
       <th>Cuisine</th>
       <th>Location</th>
       <th>Owner</th>
-      <th>Edit</th>
-      <th>Delete</th>
       <th>Favorite</th>
       <th>Rating</th>
+      <th>Save</th>
+      <th>Delete</th>
     </tr>
   </thead>
 
@@ -82,19 +82,9 @@
             {% endfor %}
           </select>
         </td>
-
-        <td>
-          <button type="submit" class="btn btn-success btn-sm">Save</button>
-        </td>
-      </form>
-
+      
       <td>
-        <form method="POST" action="{{ url_for('main.delete_truck', truck_id=truck.truck_id) }}">
-          <button type="submit" class="btn btn-danger btn-sm">Delete</button>
         </form>
-      </td>
-
-      <td>
         <form method="POST" action="{{ url_for('main.add_favorite') }}">
           <input type="hidden" name="truck_id" value="{{ truck.truck_id }}">
 
@@ -127,6 +117,17 @@
           <button type="submit" class="btn btn-primary btn-sm">Rate</button>
         </form>
       </td>
+ <td>
+          <button type="submit" class="btn btn-success btn-sm">Save</button>
+        </td>
+      </form>
+
+      <td>
+        <form method="POST" action="{{ url_for('main.delete_truck', truck_id=truck.truck_id) }}">
+          <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+        </form>
+      </td>
+
     </tr>
     {% endfor %}
   </tbody>

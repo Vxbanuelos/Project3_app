@@ -46,8 +46,8 @@ Werkzeug          3.1.8
    
 2. Create and activate a virtual environment.
    ```
-   python -m venv venv   
-   venv\Scripts\activate 
+   python -m venv .venv   
+   .venv\Scripts\activate 
    ```
 3. Install dependencies:
    ```bash

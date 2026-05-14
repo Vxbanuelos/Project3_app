@@ -47,39 +47,39 @@ Ratings
 ```text
 Users
 user_id[PK]     INT
-name        VARCHAR
-username    VARCHAR
-email       VARCHAR
-role        VARCHAR
-created_at  DATETIME
+name          VARCHAR
+username      VARCHAR
+email         VARCHAR
+role          VARCHAR
+created_at    DATETIME
 
 Foodtrucks
 truck_id[PK]    INT
-name        VARCHAR
-cuisine     VARCHAR
-location    VARCHAR
-created_at  DATETIME
+name            VARCHAR
+cuisine         VARCHAR
+location        VARCHAR
+created_at      DATETIME
 owner_id[FK]    INT
 
 Events
-event_id[PK]   INT
-title       VARCHAR
-location    VARCHAR
-event_date  DATETIME
-truck_id[FK]   INT
-created_at  DATETIME
+event_id[PK]    INT
+title           VARCHAR
+location        VARCHAR
+event_date      DATETIME
+truck_id[FK]    INT
+created_at      DATETIME
 
 Favorites
-fav_id[PK]      INT
-user_id[FK]     INT
-truck_id[FK]   INT
-created_at  DATETIME
+fav_id[PK]       INT
+user_id[FK]      INT
+truck_id[FK]     INT
+created_at       DATETIME
 
 Ratings
-rate_id[PK]        INT
-user_id(FK)    INT
-truck_id(FK)   INT
-score          INT
-created_at     DATETIME
-review_date    DATETIME
+rate_id[PK]      INT
+user_id(FK)      INT
+truck_id(FK)     INT
+score            INT
+created_at       DATETIME
+review_date      DATETIME
 ```
